@@ -12,7 +12,7 @@ This project is a full-stack DevOps demonstration that monitors real-time system
 It bridges the gap between System Administration and modern Cloud Engineering by treating infrastructure as flexible software.
 
 ### Project hosted on AWS
-[Public EC2 Instance with Docker Container Hosting Project](54.145.168.203:5000)
+Public EC2 Instance with Docker Container Hosting Project ---> 54.145.168.203:5000
 
 ## 🏗 Architecture
 The project follows a modern "Immutable Infrastructure" approach:
