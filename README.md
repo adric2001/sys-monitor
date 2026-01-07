@@ -63,4 +63,5 @@ terraform apply -auto-approve
 Output: Terraform will output the public IP of the server. server_ip = "http://54.123.45.67"
 
 
+Link to EC2 Instance (If Up): http://52.90.149.143/
 
