@@ -21,6 +21,8 @@ The project follows a modern "Immutable Infrastructure" approach using the **Sid
 4.  **CI/CD:** GitHub Actions automatically builds the image (Multi-Arch for AMD64/ARM64) and pushes it to the GitHub Container Registry (GHCR).
 5.  **Infrastructure:** Terraform provisions a free-tier AWS EC2 instance (t2.micro), configures Security Groups, and bootstraps the server.
 
+<img src="images/architecture.png" width="15%" alt="architecture" />
+
 ## 🛠 Tech Stack
 * **Orchestration:** Docker Compose & Nginx
 * **Infrastructure:** Terraform (AWS EC2, VPC, Security Groups)
@@ -30,45 +32,32 @@ The project follows a modern "Immutable Infrastructure" approach using the **Sid
 ## 🐳 Orchestration Proof
 The screenshot below confirms that two containers are running. Note that the Python App (sys-monitor) does not expose ports to the host (0.0.0.0), ensuring it is only accessible via Nginx.
 
-```mermaid
-graph LR
-    User([User / Internet]) -- "HTTP :80" --> AWS[AWS Security Group]
-    AWS -- "Allowed" --> Nginx[Nginx Reverse Proxy]
-    
-    subgraph "Private Docker Network"
-        Nginx -- "Proxy Pass :5000" --> App[Python Flask App]
-    end
-    
-    App -- "Reads /proc" --> Host[EC2 System Kernel]
-    
-    style Nginx fill:#009639,stroke:#333,stroke-width:2px,color:white
-    style App fill:#3776AB,stroke:#333,stroke-width:2px,color:white
-
+![docker](images/docker.png)
 
 ## 🚀 How to Deploy
-# Option 1: Run Locally (Docker Compose)
+### Option 1: Run Locally (Docker Compose)
 You can run the full production stack on your local machine.
 
-# 1. Clone the repo
+**1. Clone the repo:**
 git clone [https://github.com/adric2001/sys-monitor.git](https://github.com/adric2001/sys-monitor.git)
 cd sys-monitor
 
-# 2. Start the stack
+**2. Start the stack:**
 docker compose up -d
 
 Visit http://localhost (No port needed).
 
-# Option 2: Deploy to AWS (Terraform)
+### Option 2: Deploy to AWS (Terraform)
 This automates the provisioning of the EC2 instance, installs Docker/Compose, and launches the stack.
 
 Prerequisites:
 AWS CLI configured
 Terraform installed
 
-# 1. Initialize Terraform
+**1. Initialize Terraform:**
 terraform init
 
-# 2. Plan and Apply
+**2. Plan and Apply:**
 terraform apply -auto-approve
 
 Output: Terraform will output the public IP of the server. server_ip = "http://54.123.45.67"
