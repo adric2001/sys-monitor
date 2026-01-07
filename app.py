@@ -16,5 +16,4 @@ def health_check():
     })
 
 if __name__ == '__main__':
-    # Run on 0.0.0.0 to be accessible outside the container
     app.run(host='0.0.0.0', port=5000)

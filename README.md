@@ -64,4 +64,5 @@ Output: Terraform will output the public IP of the server. server_ip = "http://5
 
 
 Link to EC2 Instance (If Up): http://52.90.149.143/
+Security Note: For production, this would require HTTPS/Certbot and tighter Security Groups
 
