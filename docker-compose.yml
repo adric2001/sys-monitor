@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  # 1. Your Application
+  app:
+    image: ghcr.io/adric2001/sys-monitor:main
+    restart: always
+    expose:
+      - "5000"  # Only exposed to other containers, NOT the internet
+
+  # 2. The Reverse Proxy
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "80:80" # Opens Port 80 to the real world
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Mounts your config file into the container
+    depends_on:
+      - app
